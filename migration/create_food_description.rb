@@ -1,0 +1,16 @@
+CREATE TABLE food_descriptions ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+NDB_No text unique,
+FdGrp_Cd text,
+Long_Desc text,
+Shrt_Desc text,
+ComName text,
+ManufacName text,
+Survey text,
+Ref_desc text,
+Refuse real,
+SciName text,
+N_Factor real,
+Pro_Factor real,
+Fat_Factor real,
+CHO_Factor real
+);

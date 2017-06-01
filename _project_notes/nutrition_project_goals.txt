@@ -1,0 +1,4 @@
+Give me a list of foods based on calories, content (magnesium)
+
+
+Look up specific food and see the nutritional profile.

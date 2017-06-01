@@ -1,0 +1,161 @@
+Rails 101
+
+Active Record
+
+ORM  - Object Relational Mapping Pattern
+
+Rails is the M in MVC
+MVC - Model, View, Controller
+
+Gem install active record
+alternatives:
+    Sequel
+    rom-rb
+
+Test Methods
+  Unit test         - only tests one thing. very fast.
+    minitest        is the default testing framework in rails
+    rspec           requires changes
+
+  Integration Test  - testing multiple things at the same time. Make sure things work together.
+                      slower then Unit tests
+    capybara  - spell out the steps one at a time.
+    cucumber  - read english and turn it into a test. (Jesus doesn't like this method.)
+                "Code should be written in code, not English. English is ambiguous" - Jesus Castello 2017
+
+SQLite3
+
+go to terminal and find the folder.
+type sqlite3 to open sqlite tools  (.open database)  uses .methods
+  create table accounts ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user text, password text);
+note - values is only for Insert statements.
+  Alter table orders add column account_id integer;
+  example of update record.
+  update food_descriptions set fdgrp_cd = "01001" where id = 3;
+
+  sql examples:
+  select * from food_descriptions limit 10;
+  select * from food_descriptions order by id desc limit 10;   # last 10 records
+  select * from food_descriptions order by id asc limit 10;
+
+  select Long_Desc from food_descriptions where Long_Desc like "%Bacon%";
+  select count(Long_Desc) from food_descriptions where Long_Desc like "%Bacon%";
+
+naming conventions
+http://guides.rubyonrails.org/active_record_basics.html
+>>>> the class should be singular and the table should be plural.
+you want to refer to an Account.... in the Accounts table.
+
+Using active record we can add records.
+example
+Account.create(user: "Jesus", password: "test")
+
+
+examples of using Active Record
+puts Account.all.to_sql                                   # creates well formed SQL statements.
+Account.all
+Account.create(id: 1, user: "steve", password: "pass")    # you don't need to add the id usually.
+Account.find                                              # find one record
+Account.find_by                                           # only returns the first record it finds.
+Account.where password: "something"                       # returns ALL records with the matching phrase.
+Account.where "id <= 5"                                   # put expressions inside a string.
+Account.delete 4                                          # assuming the id is number 4.
+Warning >>>>> Account.update(user: "anything")            # this will update ALL records!!!
+Account.find(1).update(id: 10)                            # updates a single record.
+
+tp FoodDescription.where "id >= 3 and id <= 10 "        # the part in the string is actual sql code.
+FoodDescription.where( "refuse > 0").count     # count of the records
+FoodDescription.group( "fdgrp_cd").count   # count of records by group
+FoodDescription.columns
+
+
+require "table_print"
+# be carefule with tp when collecting lots of records.
+tp Account.all              # pretty format
+tp Account.where "id <= 5"  # pretty format
+tp FoodDescription.columns
+
+gem to create fake data
+gem faker   # this will create fake data
+
+pry
+ls Faker::ChuckNorris
+ls Faker::Pokemon
+ls Faker::Crypto
+   # pay attention to base methods. example >>>>> Faker::Crypto.methods: md5  sha1  sha256
+
+Example:
+Account.create(user: Faker::Book.author, password: Faker::Crypto.md5)
+
+10.times      # will result in Enumerator...   (it needs a block to operate upon.) # most basic loop.
+
+Example:
+1000.times{Account.create(user: Faker::Book.author, password: Faker::Crypto.md5)}
+
+Account.delete_all   # will remove all records.
+Account.count
+
+..................
+Relational databases
+account_id
+
+Active Record command for beginning to use relational tables.
+Example:
+Order.find(1).update(account_id: 12032)
+
+............
+First relational statement
+
+a = Order.find 1     => #<Order:0x007f9abeea0848 id: 1, order_notes: "Elsa Rempel", account_id: 12032>
+a.account            => #<Account:0x007f9ac4073bc0 id: 12032, user: "Schuyler Feest", password: "a27a0087e0f60767acd8df9c28e9e7c5">
+
+
+.......
+If you get multiple results from your array_like object the result is enumerable.
+if the account has more then one order
+b.each{|x| x.account}
+
+
+attr_reader :title, :author     # creates the methods to access read the data.
+attr_accessor :title, :author
+pry(main)> ls Book    # shows the methods
+examples:
+book1 = Book.new
+book2 = Book.new
+
+book1.title="first book"
+book1.author="steve"
+book1.anything_else   # error unless it is part of attribute accessor.
+
+.....
+testing foreign keys
+examples:
+FoodDescription.first.food_group
+FoodDescription.last.food_group
+
+these are based on:
+class FoodDescription  < ActiveRecord::Base
+  has_one :food_group, foreign_key: :FdGrp_Cd, primary_key: :FdGrp_Cd
+end
+
+class FoodGroup  < ActiveRecord::Base
+  # works with table food_groups
+  belongs_to :food_description
+end
+
+.....
+FoodGroup.first.food_description
+
+
+..........
+when all else fails.... think ruby magic is failing you... in the case below the value of Long_Desc is confused as a constant when you want it to be a method.
+
+class FoodDescription  < ActiveRecord::Base
+  has_one :food_group, foreign_key: :FdGrp_Cd, primary_key: :FdGrp_Cd
+
+  def inspect
+    #without the self it thinks it is a constant becuase it starts with upper case. to compensate the self. is added to specifically tell ruby it is a method and not a constant.
+
+    self.Long_Desc
+  end
+end

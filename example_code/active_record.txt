@@ -1,0 +1,27 @@
+#working with active record
+
+# hash of the count
+FoodDescription.group( "fdgrp_cd").count
+# example
+{"0100"=>283,
+ "2100"=>363,
+ "2200"=>125,
+ "2500"=>177,
+ "3500"=>165,
+ "3600"=>109}
+
+# count of the groups
+FoodDescription.group( "fdgrp_cd").count.count
+=> 25
+
+
+# how to compare the record count total to the count of the records by the groups.
+#count of records
+FoodDescription.count
+# using inject on the hash we can count the values of the keys.
+# the trick is to put a default value parameter on inject that applies to the accumulator (a)
+FoodDescription.group( "fdgrp_cd").count.inject(0){|a, b| a += b[1] }
+
+# compare values in groups to total records
+# a = accumulator   b = iterator 
+FoodDescription.group( "fdgrp_cd").count.inject(0){|a, b| a += b[1] } == FoodDescription.count
