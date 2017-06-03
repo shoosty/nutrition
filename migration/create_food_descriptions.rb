@@ -12,5 +12,5 @@ SciName text,
 N_Factor real,
 Pro_Factor real,
 Fat_Factor real,
-CHO_Factor real
-);
+CHO_Factor real);
+# TimeStamp date default = now);

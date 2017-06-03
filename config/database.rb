@@ -40,10 +40,7 @@ end
 class Footnote < ActiveRecord::Base
 end
 
-class Langdesc < ActiveRecord::Base
-end
-
-class LangDesc < ActiveRecord::Base
+class Language_description < ActiveRecord::Base
 end
 
 class Langual < ActiveRecord::Base
