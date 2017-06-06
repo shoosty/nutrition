@@ -172,3 +172,9 @@ command / query   # two kinds of methods.
   1. command - verb     Action
   2. query - question   Usually includes a question_mark.
                         Also known as a predicate method when it return only true or false.
+
+
+                        ......
+
+UNIX commands
+ls -lha   # show hidden files
