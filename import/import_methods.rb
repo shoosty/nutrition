@@ -14,7 +14,6 @@
 def import_food_descriptions
   import = FoodDesImport.new
   #food_desc = FoodDesImport.new.food_desc
-  import_all = CommonRecordFormat.new.import_all
   import.import_all
 end
 

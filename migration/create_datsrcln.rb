@@ -1,4 +1,4 @@
-CREATE TABLE datsrcln ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-NDB_No text unique,
-Nutr_No text unique,
-DataSrc_ID teat unique);
+CREATE TABLE datsrclns ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+NDB_No text,
+Nutr_No text,
+DataSrc_ID text);

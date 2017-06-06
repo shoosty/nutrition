@@ -25,6 +25,9 @@ Test Methods
 
 SQLite3
 
+every time you make any kind of change like updating or inserting to ensure data integrity it 1. starts transaction, 2. enters change 3. and checks record. 4. if it fails it rolls back. All of this slows the update up.
+One way to speed this up is to manually control the transaction process. example: If you have 1 mil records in import you can do 1 mil transactions or possibly a larger chunk... or one transaction.
+
 go to terminal and find the folder.
 type sqlite3 to open sqlite tools  (.open database)  uses .methods
   create table accounts ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user text, password text);
@@ -40,6 +43,8 @@ note - values is only for Insert statements.
 
   select Long_Desc from food_descriptions where Long_Desc like "%Bacon%";
   select count(Long_Desc) from food_descriptions where Long_Desc like "%Bacon%";
+  select count(*) from data_srcs
+
 
 naming conventions
 http://guides.rubyonrails.org/active_record_basics.html
@@ -159,3 +164,11 @@ class FoodDescription  < ActiveRecord::Base
     self.Long_Desc
   end
 end
+
+
+.....
+
+command / query   # two kinds of methods.
+  1. command - verb     Action
+  2. query - question   Usually includes a question_mark.
+                        Also known as a predicate method when it return only true or false.

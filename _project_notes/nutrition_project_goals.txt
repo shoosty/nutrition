@@ -1,4 +1,15 @@
 Give me a list of foods based on calories, content (magnesium)
 
-
 Look up specific food and see the nutritional profile.
+
+
+Food energy is expressed in terms of both kilocalories and kilojoules. (One kilocalorie
+equals 4.184 kilojoules.) The data are for physiologic energy values remaining after
+losses due to digestion and metabolism have been deducted. Further discussions on
+energy and caloric factors used in SR can be found in the “Food Description File” of the
+general documentation.
+The specific calorie factors used for calculating energy values in beef products are:
+Kcal/g
+Protein .................... 4.27
+Fat .......................... 9.02
+Carbohydrate ......... 3.87

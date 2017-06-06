@@ -1,4 +1,4 @@
-CREATE TABLE datsrcln ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE data_srcs ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 DataSrc_ID text unique,
 Authors text,
 Title text,

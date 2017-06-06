@@ -17,13 +17,11 @@ end
 class Deriv_Cd < ActiveRecord::Base
 end
 
-#completed
 class FoodGroup  < ActiveRecord::Base
   # works with table food_groups
   has_many :food_descriptions, foreign_key: :FdGrp_Cd, primary_key: :FdGrp_Cd
 end
 
-#completed
 class FoodDescription  < ActiveRecord::Base
   has_one :food_group, foreign_key: :FdGrp_Cd, primary_key: :FdGrp_Cd
 
@@ -54,7 +52,7 @@ end
 class NutrDef < ActiveRecord::Base
 end
 
-class SrcCd < ActiveRecord::Base
+class Source_Code < ActiveRecord::Base
 end
 
 class Weight < ActiveRecord::Base
