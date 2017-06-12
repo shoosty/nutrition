@@ -73,12 +73,59 @@ FoodDescription.where( "refuse > 0").count     # count of the records
 FoodDescription.group( "fdgrp_cd").count   # count of records by group
 FoodDescription.columns
 
+find magnesium:
+NutrDef.where "NutrDesc LIKE '%P%'"
+NutrDef.where "NutrDesc LIKE '%Magnesium%'"
+mag = NutrDef.where "NutrDesc = 'Magnesium, Mg'"
+NutData.where "Nutr_No = '304'"
+
+list of magnesium data:
+tp NutData.where(Nutr_No: '304').first
+NutData.where(Nutr_No: '304').first(10)
+
+CREATE INDEX nutr_no ON NutData (Nutr_No);
+
+FoodDescription.where NDB_No: '01001'
+
+FoodDescription.where NDB_No: (NutData.where(Nutr_No: '304'))
+FoodDescription.where NDB_No: 18963
+
+
+ NutData.where("Nutr_No = '304'").count
+
+tp NutData.where(Nutr_No: '304').where(NUTR_VAL: '0.0').first(10)
+NutData.where(Nutr_No: '304').where("NUTR_VAL != '0.0'").count
+pry(main)> NutData.where(Nutr_No: '304').where("NUTR_VAL > '750.0'").count
+# returns 6 records
+
+FoodDescription.where NDB_No: (NutData.where(Nutr_No: '304').where("NUTR_VAL > '750.0'").each{|x| puts x[:NDB_No]};nil)
+
+
+tp FoodDescription.where NDB_No: (NutData.where(Nutr_No: '304').where("NUTR_VAL > '200.0'").map{|x| x[:NDB_No]})
+
+
+
+NutrDef.all.sort_by{|x| x.NutrDesc}
+
 
 require "table_print"
 # be carefule with tp when collecting lots of records.
 tp Account.all              # pretty format
 tp Account.where "id <= 5"  # pretty format
 tp FoodDescription.columns
+
+fd = FoodDescription.first
+FoodGroup.first
+fd.nut_data
+fd.nut_data.first
+
+nd = NutDatum.first
+nd.nutr_def.first
+NutrDef.where "NutrDesc = 'Magnesium, Mg'"
+
+
+
+
 
 gem to create fake data
 gem faker   # this will create fake data
@@ -178,3 +225,6 @@ command / query   # two kinds of methods.
 
 UNIX commands
 ls -lha   # show hidden files
+
+.....
+https://help.github.com/articles/removing-sensitive-data-from-a-repository/

@@ -13,5 +13,5 @@ load "sinatra.rb"
 load "import/import.rb"
 
 these have been replaced.
-load "import/import_classes.rb"
-load "import/import_methods.rb"
+# load "import/import_classes.rb"
+# load "import/import_methods.rb"

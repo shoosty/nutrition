@@ -11,7 +11,7 @@
       "FOOTNOTE.txt" => Footnote,
       "LANGDESC.txt" => Language_description,
       "LANGUAL.txt"  => Langual,
-      "NUT_DATA.txt" => NutData,
+      "NUT_DATA.txt" => NutDatum,
       "NUTR_DEF.txt" => NutrDef,
       "SRC_CD.txt"   => Source_Code,  # check this one
       "WEIGHT.txt"   => Weight

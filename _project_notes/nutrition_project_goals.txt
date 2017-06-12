@@ -13,3 +13,44 @@ Kcal/g
 Protein .................... 4.27
 Fat .......................... 9.02
 Carbohydrate ......... 3.87
+
+question:
+give me a list of all the foods that contain more then 750 mg of Magnesium.
+answer:
+
+version one   -
+tp FoodDescription.where NDB_No: (NutData.where(Nutr_No: '304').where("NUTR_VAL > '750.0'").map{|x| x[:NDB_No]})
+version two   -
+
+tp mag.first.nut_data.where("Nutr_Val > 750").map(&:food_description)    # best of class
+version three -
+tp mag.first.nut_data.where("Nutr_Val > 750").map(|x| x.food_description)
+
+
+can you make a table like Google gives you on Dark Chocolate?
+tp fd.first.nut_data.map{|x| x.nutr_def}
+
+join - takes the data from multiple tables and makes it into one thing.
+
+
+#start with magnesium
+NutrDef.where "NutrDesc = 'Magnesium, Mg'"
+fd.map{|x| p  x.NDB_No == 'Magnesium, Mg'"}
+NutrDef
+
+Select "food_groups".* FROM "food_groups" WHERE "food_groups"."FdGrp_Cd" = '0100';
+
+
+
+fd.nut_data.select{|x|  x.Nutr_No == "304"}.select{|x| p x.NDB_No}
+
+fd.nut_data.select{|x|  x.Nutr_No == "304"}.select{|x| p x.NDB_No}
+
+
+
+
+
+
+mag = NutrDef.where "NutrDesc = 'Magnesium, Mg'"   # Magnesium object or entry. The definition of Magnesium.
+
+food_description.where "NDB_No =
