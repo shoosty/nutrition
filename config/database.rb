@@ -61,16 +61,3 @@ end
 
 class Weight < ActiveRecord::Base
 end
-
-fd = FoodDescription.new
-fg = FoodGroup.new
-
-def test
-  FoodDescription.first.food_group
-  FoodDescription.last.food_group
-  FoodGroup.first.food_description
-  tp FoodGroup.first.food_descriptions
-  tp FoodGroup.all[1].food_descriptions
-  tp FoodDescription.where "Long_Desc like '%Bacon%'"
-  puts FoodDescription.select("Long_Desc").where("Long_Desc like '%Bacon%'").last
-end
