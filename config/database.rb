@@ -1,11 +1,10 @@
 
 require 'active_record'
-require 'minitest/autorun'
 require 'table_print'
 
 ActiveRecord::Base.establish_connection(
-adapter: "sqlite3",
-database: "db/database.db"
+  adapter: "sqlite3",
+  database: "db/database.db"
 )
 
 class DataSrc < ActiveRecord::Base
