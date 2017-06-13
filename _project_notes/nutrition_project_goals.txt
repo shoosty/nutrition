@@ -32,6 +32,14 @@ tp fd.first.nut_data.map{|x| x.nutr_def}
 
 join - takes the data from multiple tables and makes it into one thing.
 
+fd.first.nut_data.joins(:nutr_def).select( :Nutr_Desc)
+fd.first.nut_data.joins(:nutr_def).select(:NutrDesc, :Nutr_Val)
+fd.first.nut_data.joins(:nutr_def).select("NutrDef.NutrDesc")
+table.column
+
+FoodDescription.select('food_descriptions.Shrt_Desc, nut_data.nutr_val, nutr_defs.NutrDesc').joins(:nut_data, :nut_defs)
+
+
 
 #start with magnesium
 NutrDef.where "NutrDesc = 'Magnesium, Mg'"
@@ -46,7 +54,12 @@ fd.nut_data.select{|x|  x.Nutr_No == "304"}.select{|x| p x.NDB_No}
 
 fd.nut_data.select{|x|  x.Nutr_No == "304"}.select{|x| p x.NDB_No}
 
+bj = FoodDescription.select('food_descriptions.Shrt_Desc, nut_data.Nutr_Val, nutr_defs.NutrDesc').joins(nut_data: [:nutr_def]).where("Shrt_Desc = 'BUTTER,WITH SALT'")
 
+# >>>>>>>>>>>>>>>>>>
+Joins don't work right in ActiveRecord!!! They only show one side!!
+You can use them for filtering but not for getting the data.
+# >>>>>>>>>>>>>>>>>>>>
 
 
 

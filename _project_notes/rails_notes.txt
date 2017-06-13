@@ -123,8 +123,39 @@ nd = NutDatum.first
 nd.nutr_def.first
 NutrDef.where "NutrDesc = 'Magnesium, Mg'"
 
+..........
+fd = FoodDescription.new
+fg = FoodGroup.new
 
+def test
+  # test examples using related tables
+  FoodDescription.first.food_group
+  FoodDescription.last.food_group
+  FoodGroup.first.food_description   # this only works with has_one
+  tp FoodGroup.first.food_descriptions  # notice the plaural realted to has_many.
+  tp FoodGroup.all[1].food_descriptions
+  tp FoodDescription.where "Long_Desc like '%Bacon%'"
+  puts FoodDescription.select("Long_Desc").where("Long_Desc like '%Bacon%'").last
+end
+............
 
+# both of these methods change the representation of hte object only when printing. Optional.
+  def to_s   # puts
+    self.Shrt_Desc
+  end
+
+  def inspect   # when you use p it uses inspect
+    #without the self it thinks it is a constant becuase it starts with upper case. To compensate the self is added to specifically tell ruby it is a method and not a constant.
+    self.Long_Desc
+  end
+end
+# the symbol after the has_one example :food_group is the method.
+
+..............
+
+# Dir.pwd
+
+........
 
 
 gem to create fake data
