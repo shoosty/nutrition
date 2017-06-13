@@ -9,4 +9,3 @@ result = data.map { |data| {value: data.Nutr_Val, description: data.nutr_def.Nut
 puts "Nutrition data for: #{fd.Shrt_Desc}"
 puts
 tp result
-

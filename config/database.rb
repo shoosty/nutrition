@@ -50,7 +50,7 @@ end
 class Footnote < ActiveRecord::Base
 end
 
-class Language_description < ActiveRecord::Base
+class Language_Description < ActiveRecord::Base
 end
 
 class Langual < ActiveRecord::Base

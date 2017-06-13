@@ -9,7 +9,7 @@
       "FD_GROUP.txt" => FoodGroup,
       "FOOD_DES.txt" => FoodDescription,
       "FOOTNOTE.txt" => Footnote,
-      "LANGDESC.txt" => Language_description,
+      "LANGDESC.txt" => Language_Description,
       "LANGUAL.txt"  => Langual,
       "NUT_DATA.txt" => NutDatum,
       "NUTR_DEF.txt" => NutrDef,
