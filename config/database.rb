@@ -16,11 +16,11 @@ end
 class Deriv_Cd < ActiveRecord::Base
 end
 
-class FoodGroup  < ActiveRecord::Base
+class FoodGroup < ActiveRecord::Base
   has_many :food_descriptions, foreign_key: :FdGrp_Cd, primary_key: :FdGrp_Cd
 end
 
-class FoodDescription  < ActiveRecord::Base
+class FoodDescription < ActiveRecord::Base
   has_one :food_group, foreign_key: :FdGrp_Cd, primary_key: :FdGrp_Cd
   has_many :nut_data, foreign_key: :NDB_No, primary_key: :NDB_No
 
