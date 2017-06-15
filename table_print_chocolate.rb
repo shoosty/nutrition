@@ -11,7 +11,11 @@ def provide_choices_to_user
   puts "\n\n"
   tp food_selection.zip(1..count_of_choices).map{|a, b| Choice.new(b, a) }
   response = gets.chomp.downcase
-  exit if response == "exit"
+  until response.to_i > 0
+    exit if response == "exit"
+    puts "Sorry I don't understand that entry. Please try again or type EXIT to end the program."
+    response = gets.chomp.downcase
+  end
 
   (1..count_of_choices).zip(food_selection)[response.to_i - 1][1]
 end
@@ -25,7 +29,8 @@ def choice
 
   puts "Nutrition data for: #{column_name}"
   tp result.first(10)
-
+  puts "Press any key to continue"
+  gets
   choice
 end
 
